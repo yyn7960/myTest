@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 修改struts2默认的最大上传文件大小（默认最大2M），现改为5M -->	
+	<constant name= "struts.multipart.maxSize" value="5242880"></constant>
+	
+	
+	<!-- Action -->
+	<package name="user" extends="struts-default" namespace="">
+		<global-results>
+			<!-- 下面定义的结果对所有的Action都有效 -->
+		    <result name="exception">/systemerror.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<!-- 指Action抛出Exception异常时，转入名为exception的结果。 -->
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+		</global-exception-mappings>
+		
+		<!-- 上传文件例子 
+		<action name="uploadportrait" class="com.guoyanjincheng.action.UploadPortraitAction">
+			<interceptor-ref name="fileUpload">
+				配置允许上传的文件类型，多个用","分隔  
+				<param name="allowedTypes">
+					image/bmp,image/png,image/gif,image/jpeg,image/jpg,image/x-png,image/pjpeg 
+              	</param> 
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="error">/error.jsp</result>
+			<result name="success">/test.jsp</result>
+		</action>
+		
+		<action name="forumindex" class="com.guoyanjincheng.action.ForumIndexAction">
+			<result name="success">/myforum.jsp</result>
+		</action>
+		<action name="changediscusstop" class="com.guoyanjincheng.action.ChangeDiscussAction" method="top">
+			<result name="success" type="chain">lookdiscuss.action?id=${id}</result>
+		</action>
+		<action name="reg" class="com.guoyanjincheng.action.RegAction">
+			<result name="success" type="redirect">/forumindex.action</result>
+		</action>
+		<action name="user_*_*" class="com.guoyanjincheng.action.UserAction" method="{1}">
+			<result name="success" type="redirectAction">/user_list</result>
+			<result name="success">/{2}.jsp</result>
+			<result name="oneUser">/lookOneUser.jsp</result>
+			<result name="list">/userList.jsp</result>
+		</action>-->
+		<action name="upload" class="com.yappam.action.UploadAction">
+			<interceptor-ref name="fileUpload">
+				<!-- 配置允许上传的文件类型，多个用","分隔 -->  
+				<param name="allowedTypes">
+					image/bmp,image/png,image/gif,image/jpeg,image/jpg,image/x-png,image/pjpeg 
+              	</param> 
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="error">/error.jsp</result>
+			<result name="success">/test.jsp</result>
+		</action>
+		<action name="user_*" class="com.yappam.action.UserAction" method="{1}">
+			<result name="success">/index.jsp</result>
+		</action>
+	</package>
+	
+	
+	<!-- Ajax -->
+	<package name="ajax" extends="json-default">
+  		<!-- 例子 
+  		<action name="getnewstype" class="com.guoyanjincheng.action.ajax.GetNewsTypeAction">
+	  		<result type="json"/>
+  		</action>-->
+  	</package>
+</struts>

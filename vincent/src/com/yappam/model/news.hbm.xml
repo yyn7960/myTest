@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.yappam.model.News" table="t_news" schema="news">
+        <id name="id" type="int">
+            <column name="id" length="10" />
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="50" />
+        </property>
+        <property name="content" type="text">
+            <column name="content"  />
+        </property>
+        <property name="fid" type="int">
+            <column name="fid" length="5" />
+        </property>
+        <property name="img" type="string">
+            <column name="img" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>
